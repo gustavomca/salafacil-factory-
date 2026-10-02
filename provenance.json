@@ -6,7 +6,7 @@
   "source_fingerprint": "ff71b13c90d1152f9b97c9f78d71de5de981d8f03ce7349665572b3574b83498",
   "factory_revision_in_original": "ab9dee88b6c0dec15abffd306ff95655f9f707f2",
   "created_at": "2026-10-02T18:05:02.862596+00:00",
-  "content_tree_sha256_excluding_this_manifest": "8acc7180e2bb245ebeb038fcb3214a9304569c61fcbd9437bb74baa4dad2d17f",
+  "content_tree_sha256_excluding_this_manifest": "da67164efbabe59949b9f677e08a69eb2c1ec5c8bd20f6d84dddb4624e7657e1",
   "copied_files": [
     {
       "path": ".dockerignore",
@@ -964,7 +964,7 @@
   "added_files": [
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "6641bd8a0802747980de92ffb0951e273f3af7e62b431f964e5bab7c37e550e0"
+      "sha256": "995cfd8e66e00bcc25cb18c810146bc5602d64e181134e637f458c1dbdb0e440"
     },
     {
       "path": "README.md",
@@ -1008,7 +1008,15 @@
     },
     {
       "path": "docs/verification.md",
-      "sha256": "7662485a00d77f9271deb4987b09b7395ea5a1ef97608e26e4ab3cbdf24b4c71"
+      "sha256": "b93f960fb2e4ca1ad5d0259424f15a8cf49f1484b68ec5d7c4bc0b9e151969f3"
+    },
+    {
+      "path": "scripts/verify-check.py",
+      "sha256": "877fec45afba0c095efbaf515289d337fe4eb80299b669a8666397b69cc0f7dc"
+    },
+    {
+      "path": "tests/verification/test_verify_check.py",
+      "sha256": "8b2b89e5a8519a83e5de7f9a14ff018357a33a6915f60de4eba50ad1534ca901"
     }
   ],
   "privacy_exclusions": [
@@ -1026,5 +1034,7 @@
     "final_technical_H4": "pending",
     "final_publication": "blocked until remaining gates pass",
     "new_permissive_license": "none"
-  }
+  },
+  "source_commit_role": "Original private source candidate from which bytes were exported; this private commit is not part of the new public history",
+  "original_retained_head_at_refresh": "dc54b033daf97f6d14805099959df9b81bcbf927"
 }

@@ -31,6 +31,8 @@ jobs:
           version = tuple(map(int, re.findall(r'\d+', sys.argv[1])[:3]))
           assert version >= (2, 24, 4), 'Docker Compose >= 2.24.4 is required'
           PY
+      - name: Verify count and skip guards
+        run: python3 -m unittest discover -s tests/verification -v
       - name: Run the official product check
         shell: bash
-        run: bash "scripts/test-${{ matrix.check }}.sh"
+        run: python3 scripts/verify-check.py "${{ matrix.check }}"

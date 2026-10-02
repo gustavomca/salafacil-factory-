@@ -28,3 +28,9 @@ Os resultados da fonte original exportada estão em
 Eles não devem ser atribuídos automaticamente a uma revisão posterior ou ao CI
 remoto. O aceite técnico final e a nova revisão independente permanecem pendentes
 na preparação desta exportação; a aprovação visual não substitui esses gates.
+
+O CI chama `python3 scripts/verify-check.py CHECK` (CHECK é backend, frontend,
+e2e, operations ou reproduce). Além do exit code, exige os marcadores completos,
+contagens exatas 59/78/44 e nenhuma suíte omitida. E2E exige um JSON novo com
+44 expected e zero skipped/unexpected/flaky. O guard é verificado com casos
+negativos em `tests/verification/`. Python 3 é necessário para esse wrapper.
