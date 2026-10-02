@@ -1,0 +1,36 @@
+name: SalaFacil checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: salafacil-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        check: [backend, frontend, e2e, operations, reproduce]
+    steps:
+      # Official actions/checkout v4, resolved from GitHub on 2026-10-02.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Check Docker and Compose prerequisites
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker info --format '{{.ServerVersion}}'
+          task_compose_version="$(docker compose version --short)"
+          python3 - "$task_compose_version" <<'PY'
+          import re, sys
+          version = tuple(map(int, re.findall(r'\d+', sys.argv[1])[:3]))
+          assert version >= (2, 24, 4), 'Docker Compose >= 2.24.4 is required'
+          PY
+      - name: Run the official product check
+        shell: bash
+        run: bash "scripts/test-${{ matrix.check }}.sh"

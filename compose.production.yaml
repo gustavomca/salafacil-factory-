@@ -1,0 +1,38 @@
+# Perfil Linux/rootful de validação TLS/socket. Sem implantação pública automática.
+services:
+  db:
+    environment:
+      POSTGRES_PASSWORD: ${DB_ADMIN_PASSWORD:?Segredo próprio do banco obrigatório}
+      APP_DB_PASSWORD: ${DB_PASSWORD:?Segredo próprio da aplicação obrigatório}
+  init:
+    environment:
+      APP_ENV: production
+      DEBUG: "false"
+      SECRET_KEY: ${SECRET_KEY:?SECRET_KEY própria obrigatória}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:?Hosts explícitos obrigatórios}
+      CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS:?Origins HTTPS explícitas obrigatórias}
+      DB_PASSWORD: ${DB_PASSWORD:?Segredo próprio obrigatório}
+  backend:
+    environment:
+      APP_ENV: production
+      DEBUG: "false"
+      BACKEND_TRANSPORT: unix
+      SECRET_KEY: ${SECRET_KEY:?SECRET_KEY própria obrigatória}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:?Hosts explícitos obrigatórios}
+      CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS:?Origins HTTPS explícitas obrigatórias}
+      DB_PASSWORD: ${DB_PASSWORD:?Segredo próprio obrigatório}
+    volumes: ["socket:/run/salafacil"]
+  web:
+    environment:
+      APP_ENV: production
+      WEB_BIND_IPV4: ${WEB_BIND_IPV4:?IPv4 explícito obrigatório}
+    networks: !reset []
+    ports: !reset []
+    network_mode: host
+    volumes:
+      - socket:/run/salafacil
+      - ${TLS_DIRECTORY:?Diretório TLS obrigatório}:/run/tls:ro
+    healthcheck:
+      test: [CMD-SHELL, 'wget -q -O /dev/null --no-check-certificate "https://$${WEB_BIND_IPV4}:8443/health/ready"']
+volumes:
+  socket:

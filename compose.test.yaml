@@ -1,0 +1,74 @@
+# Somente stacks de testes descartáveis; não aplicar sobre o projeto local com dados.
+services:
+  db:
+    environment:
+      APP_DB_CREATEDB: "true"
+    restart: "no"
+  init:
+    environment:
+      APP_ENV: test
+  backend:
+    environment:
+      APP_ENV: test
+    restart: "no"
+  web:
+    environment:
+      APP_ENV: test
+    ports: !override ["127.0.0.1:${TEST_WEB_PORT:-18081}:8080"]
+    restart: "no"
+  backend-test:
+    image: salafacil-backend-test:${IMAGE_TAG:-test}
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+      target: test
+    environment:
+      APP_ENV: test
+      DEBUG: "false"
+      SECRET_KEY: local-only-salafacil-isolated-test-secret
+      ALLOWED_HOSTS: localhost,127.0.0.1,testserver,web
+      CSRF_TRUSTED_ORIGINS: http://web:8080
+      DB_NAME: ${DB_NAME:-salafacil}
+      DB_USER: ${DB_USER:-salafacil}
+      DB_PASSWORD: ${DB_PASSWORD:-LocalDatabase2026}
+      DB_HOST: db
+      DB_PORT: "5432"
+    networks: [app]
+    depends_on:
+      db: {condition: service_healthy}
+    command: [python, manage.py, test, --noinput, --verbosity, "2"]
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=128m,mode=1777"]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+  frontend-test:
+    image: salafacil-frontend-test:${IMAGE_TAG:-test}
+    build:
+      context: .
+      dockerfile: docker/web.Dockerfile
+      target: frontend-test
+    network_mode: none
+    environment:
+      CI: "true"
+      NO_COLOR: "1"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+  e2e:
+    image: salafacil-e2e:${IMAGE_TAG:-test}
+    init: true
+    user: "${TEST_UID:-1000}:${TEST_GID:-1000}"
+    build:
+      context: .
+      dockerfile: docker/e2e.Dockerfile
+    environment:
+      BASE_URL: http://web:8080
+      CI: "true"
+      HOME: /tmp
+    networks: [app]
+    depends_on:
+      web: {condition: service_healthy}
+    volumes:
+      - ./.factory/artifacts:/workspace/.factory/artifacts
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    shm_size: 1gb

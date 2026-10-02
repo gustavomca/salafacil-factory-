@@ -1,0 +1,105 @@
+name: ${COMPOSE_PROJECT_NAME:-salafacil}
+
+x-backend-env: &backend-env
+  APP_ENV: ${APP_ENV:-local}
+  DEBUG: ${DEBUG:-false}
+  SECRET_KEY: ${SECRET_KEY:-local-only-salafacil-development-key-change-for-production}
+  ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,127.0.0.1,web,testserver}
+  CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080}
+  DB_NAME: ${DB_NAME:-salafacil}
+  DB_USER: ${DB_USER:-salafacil}
+  DB_PASSWORD: ${DB_PASSWORD:-LocalDatabase2026}
+  DB_HOST: db
+  DB_PORT: "5432"
+
+x-backend: &backend
+  image: salafacil-backend:${IMAGE_TAG:-local}
+  environment: *backend-env
+  networks: [app]
+  read_only: true
+  tmpfs: ["/tmp:rw,noexec,nosuid,size=64m,mode=1777"]
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+
+services:
+  db:
+    image: salafacil-db:${IMAGE_TAG:-local}
+    build:
+      context: .
+      dockerfile: docker/postgres.Dockerfile
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_ADMIN_PASSWORD:-LocalDatabaseAdmin2026}
+      POSTGRES_DB: postgres
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256 --auth-local=scram-sha-256
+      APP_DB_NAME: ${DB_NAME:-salafacil}
+      APP_DB_USER: ${DB_USER:-salafacil}
+      APP_DB_PASSWORD: ${DB_PASSWORD:-LocalDatabase2026}
+      APP_DB_CREATEDB: "false"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    command: [postgres, -c, log_statement=none, -c, log_min_error_statement=panic, -c, log_error_verbosity=terse, -c, log_parameter_max_length_on_error=0]
+    networks: [app]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U postgres -d postgres"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+    stop_grace_period: 40s
+
+  init:
+    <<: *backend
+    command: [init]
+    depends_on:
+      db: {condition: service_healthy}
+    restart: "no"
+
+  backend:
+    <<: *backend
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+      target: runtime
+    command: [serve]
+    depends_on:
+      init: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, /opt/salafacil/health.py]
+      interval: 5s
+      timeout: 6s
+      retries: 20
+      start_period: 10s
+    stop_grace_period: 35s
+    restart: unless-stopped
+
+  web:
+    image: salafacil-web:${IMAGE_TAG:-local}
+    build:
+      context: .
+      dockerfile: docker/web.Dockerfile
+      target: runtime
+    environment:
+      APP_ENV: ${APP_ENV:-local}
+    ports: ["127.0.0.1:${WEB_PORT:-8080}:8080"]
+    networks: [app, edge]
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=32m,mode=1777"]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    depends_on:
+      backend: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:8080/health/ready]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    stop_grace_period: 35s
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+networks:
+  app:
+    internal: true
+  edge:

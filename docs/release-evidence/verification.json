@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "scope": "Original candidate tests from which this separate repository was exported; not remote CI of the public commit",
+  "candidate_commit": "e1e552a9e858f80364c9891ad81513108914fa5e",
+  "source_fingerprint": "ff71b13c90d1152f9b97c9f78d71de5de981d8f03ce7349665572b3574b83498",
+  "factory_revision": "ab9dee88b6c0dec15abffd306ff95655f9f707f2",
+  "checks": [
+    {
+      "check": "backend",
+      "status": "passed",
+      "exit_code": 0,
+      "completed_at": "2026-10-02T17:32:19.880881+00:00",
+      "log_sha256": "4aee0f80050296e0329c9caf31f9b4d947dacf9e96e545557c691f3e831bc78c",
+      "source_unchanged": true
+    },
+    {
+      "check": "frontend",
+      "status": "passed",
+      "exit_code": 0,
+      "completed_at": "2026-10-02T17:33:42.111696+00:00",
+      "log_sha256": "102df8da92f0e26f31c0e0ea57f7e40c78139cd705ba8e8221259cf00c1b31bf",
+      "source_unchanged": true
+    },
+    {
+      "check": "e2e",
+      "status": "passed",
+      "exit_code": 0,
+      "completed_at": "2026-10-02T17:38:20.323915+00:00",
+      "log_sha256": "3134bb74c8cfcd43fd8623cf17a828e90e9d649f4dd7839ee5adffe74ecc97f7",
+      "source_unchanged": true
+    },
+    {
+      "check": "operations",
+      "status": "passed",
+      "exit_code": 0,
+      "completed_at": "2026-10-02T17:38:08.901335+00:00",
+      "log_sha256": "bc5f0eab2c359d11079d1908b64e0dd7712b026c7e5721b443c7a9efcb745231",
+      "source_unchanged": true
+    },
+    {
+      "check": "reproduce",
+      "status": "passed",
+      "exit_code": 0,
+      "completed_at": "2026-10-02T17:38:16.631819+00:00",
+      "log_sha256": "605367b2add66464521986f9a0d78f762663f193a274c6f375767307ab3e7d70",
+      "source_unchanged": true
+    }
+  ],
+  "test_counts": {
+    "backend": 59,
+    "frontend": 78,
+    "e2e": 44,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "visual": "Approved direction B; six current synthetic captures included without modification",
+  "independent_refresh": "pending; not executed",
+  "final_technical_H4": "pending",
+  "public_commit_CI": "not run; no GitHub repository created",
+  "deployment": "none",
+  "dependency_audit": "Two npm lockfiles, nine Python runtime packages and Ruff checked 2026-10-02; no known vulnerabilities returned; OS/base images not audited"
+}

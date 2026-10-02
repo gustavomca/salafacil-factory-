@@ -1,0 +1,19 @@
+{
+  "name": "salafacil-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:desktop": "playwright test --project=desktop",
+    "test:mobile": "playwright test --project=mobile",
+    "test:integrated": "playwright test --grep-invert @injected",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "@playwright/test": "1.63.0",
+    "@types/node": "22.15.30",
+    "typescript": "5.9.3"
+  }
+}
