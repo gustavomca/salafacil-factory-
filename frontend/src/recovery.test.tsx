@@ -314,9 +314,14 @@ describe("O4-C reservation intention and session identity", () => {
     backend.loginAs(admin);
     fireEvent(window, new Event("focus"));
     await screen.findByRole("heading", { name: "Bom ter você aqui." });
-    expect(
-      screen.getByText(/A conta foi alterada em outra aba/),
-    ).toBeInTheDocument();
+    await waitFor(() =>
+      expect(
+        screen.getByRole("status", { name: "Atualizações da página" }),
+      ).toHaveTextContent(/A conta foi alterada em outra aba/),
+    );
+    const warning = screen.getByRole("note");
+    expect(warning).toHaveTextContent(/A conta foi alterada em outra aba/);
+    expect(warning).toBeVisible();
     await login(admin);
     expect(await screen.findByLabelText("Título da reunião")).toHaveValue("");
     expect(

@@ -6,7 +6,7 @@
   "source_fingerprint": "ff71b13c90d1152f9b97c9f78d71de5de981d8f03ce7349665572b3574b83498",
   "factory_revision_in_original": "ab9dee88b6c0dec15abffd306ff95655f9f707f2",
   "created_at": "2026-10-02T18:05:02.862596+00:00",
-  "content_tree_sha256_excluding_this_manifest": "e14c4bd1c7f2812007712a7aae7999314903a62ad6aca30736125db59742a87c",
+  "content_tree_sha256_excluding_this_manifest": "ad48ecfce278465a37a23cd937c09bbcdd25ecadc81f478ca6d0da484069b315",
   "copied_files": [
     {
       "path": ".dockerignore",
@@ -697,9 +697,9 @@
     {
       "path": "frontend/src/recovery.test.tsx",
       "source_sha256": "0b0c19638573adcd5ee00ebdfb0afb8db0f6c56d3869359566a809e6bc736263",
-      "export_sha256": "0b0c19638573adcd5ee00ebdfb0afb8db0f6c56d3869359566a809e6bc736263",
-      "unchanged": true,
-      "reason": "Byte-identical product file"
+      "export_sha256": "1c27f42d10c5274a758ff139e702581c7b7b052daca2d4dfb38753511631d8df",
+      "unchanged": false,
+      "reason": "Test-only correction after remote CI ambiguity: wait for live announcement and assert the visible note by its role; runtime unchanged, no skips or test-count reduction"
     },
     {
       "path": "frontend/src/reservations.tsx",
