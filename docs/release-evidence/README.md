@@ -2,8 +2,9 @@
 
 Capturas de 2026-10-02 da aplicação real em Chromium desktop/mobile, com dados
 fictícios. Os seis PNGs mantêm seus bytes originais. A direção visual e o histórico
-público separado foram aprovados pelo proprietário. A conclusão técnica depende
-da revisão independente e dos gates finais; não houve deploy ou CI remoto.
+público separado foram aprovados pelo proprietário. Os recibos e a cadeia de
+aceite são retidos privadamente. CI remoto deve ser consultado no GitHub para
+o SHA pertinente; testes locais não comprovam uma execução remota.
 
 | Tela | Desktop | Celular |
 |---|---|---|

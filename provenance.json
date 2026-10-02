@@ -6,7 +6,7 @@
   "source_fingerprint": "ff71b13c90d1152f9b97c9f78d71de5de981d8f03ce7349665572b3574b83498",
   "factory_revision_in_original": "ab9dee88b6c0dec15abffd306ff95655f9f707f2",
   "created_at": "2026-10-02T18:05:02.862596+00:00",
-  "content_tree_sha256_excluding_this_manifest": "da67164efbabe59949b9f677e08a69eb2c1ec5c8bd20f6d84dddb4624e7657e1",
+  "content_tree_sha256_excluding_this_manifest": "e14c4bd1c7f2812007712a7aae7999314903a62ad6aca30736125db59742a87c",
   "copied_files": [
     {
       "path": ".dockerignore",
@@ -578,23 +578,23 @@
     {
       "path": "docs/development.md",
       "source_sha256": "3b359ab1e9487ce73ce0b5bcc0b4b15192d1062a480e7825c33543dac5868b5f",
-      "export_sha256": "8f52162a27335a35860cf7da788dbc81551c0e0dc4e87b3bcf52835bb7ea5b8a",
+      "export_sha256": "a3769d478286c8220606c9c5b875995a62b714a574b67387ec9fda6ed6d98b09",
       "unchanged": false,
-      "reason": "Replace unavailable private governance references with public API/security/check docs"
+      "reason": "Public API/security references and actual count/skip wrapper documentation"
     },
     {
       "path": "docs/operations.md",
       "source_sha256": "94b1365871d204191ef42438198d8045413eb6b81f44227dc196d8d01f94cece",
-      "export_sha256": "94b1365871d204191ef42438198d8045413eb6b81f44227dc196d8d01f94cece",
-      "unchanged": true,
-      "reason": "Byte-identical product file"
+      "export_sha256": "36dfda4ab97437f584ef9fa9d52a4c44a0120c295864fa2ded3a3181903a029d",
+      "unchanged": false,
+      "reason": "Neutral public heading removes unresolved private gate identifier; operational instructions unchanged"
     },
     {
       "path": "docs/security.md",
       "source_sha256": "4f9e58f3c5be58eff36196e296fbe77f5de6712255ea915d5477f1ea12526204",
-      "export_sha256": "ea400133a86e338384b08d2e49a55de53ba9f21d242e781e4efc6a5fcf740c72",
+      "export_sha256": "7bcf049e430c2ebd49745310e4715dd4c64f5e52b7dd4203a676d7fe37c79880",
       "unchanged": false,
-      "reason": "Public documentation links to available operational/verification docs; no private review metadata"
+      "reason": "Public links and neutral deployment limitations; no private gate identifiers or workstation-relative claims"
     },
     {
       "path": "frontend/README.md",
@@ -968,7 +968,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "28e30ec280e55e59a41dfd1c88eef6850ff265395baf41318df3e4939015e5d0"
+      "sha256": "57693e7cc276797bb4647bce03caed3bdd896f9799990d5178b860b95c9f50bb"
     },
     {
       "path": "docs/dependency-licenses.json",
@@ -976,7 +976,7 @@
     },
     {
       "path": "docs/release-evidence/README.md",
-      "sha256": "f1a09d42c060c5fa3493d5c756b6f5dfd0ab8298dc90cb7ae35967e0facb133a"
+      "sha256": "df4049909571879505a80aa09fb93fe2e4f775e86259b47f1e46a8b2e549a45f"
     },
     {
       "path": "docs/release-evidence/screenshots/cancelamento-desktop.png",
@@ -1004,11 +1004,11 @@
     },
     {
       "path": "docs/release-evidence/verification.json",
-      "sha256": "dacc70da30e0f239fef7197eaf785bad3af9ca822a3c8a69d2df4917fdca2aaf"
+      "sha256": "61a6ec45070e6855d23a9cf66424ed547d6d0dbdfa62b4e2eea0d89eb5814c12"
     },
     {
       "path": "docs/verification.md",
-      "sha256": "b93f960fb2e4ca1ad5d0259424f15a8cf49f1484b68ec5d7c4bc0b9e151969f3"
+      "sha256": "1f7d2d749c67f54c3fb302e01674b56cbd6ea7f70536888e3f95e4d5512d52e4"
     },
     {
       "path": "scripts/verify-check.py",
@@ -1030,11 +1030,10 @@
   "governance_status": {
     "visual": "human-approved",
     "separate_public_history": "human-approved",
-    "independent_refresh": "pending",
-    "final_technical_H4": "pending",
-    "final_publication": "blocked until remaining gates pass",
+    "review_and_acceptance_records": "Retained privately in original repository; this byte-provenance manifest is not an approval tool",
     "new_permissive_license": "none"
   },
   "source_commit_role": "Original private source candidate from which bytes were exported; this private commit is not part of the new public history",
-  "original_retained_head_at_refresh": "dc54b033daf97f6d14805099959df9b81bcbf927"
+  "original_retained_head_at_refresh": "dc54b033daf97f6d14805099959df9b81bcbf927",
+  "intended_public_repository": "gustavomca/salafacil-factory-"
 }

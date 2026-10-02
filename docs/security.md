@@ -116,15 +116,15 @@ Django; PostgreSQL exige autenticação por senha inclusive na rede interna, sem
 trust por origem. O perfil pressupõe host dedicado ou sem serviços sensíveis não
 autenticados em loopback/socket abstrato, com Docker/containerd suportados e sem
 shim/serviço privilegiado exposto em socket abstrato. Essas precondições precisam
-ser conferidas antes de uso operacional; o RC local e os probes não certificam
-esta estação como host de produção. A mudança é de configuração de um proxy existente,
-sem mudança da stack, paradigma ou autorização de dados; seu trade-off integra H2.
+ser conferidas antes de uso operacional; os testes e probes locais não certificam
+o host como produção. A configuração do proxy preserva a stack, o paradigma e a
+autorização de dados.
 O probe bridge reproduziu colapso somente no caminho de clientes do próprio host
 via gateway/hairpin. Não mediu IPv4 externo por DNAT e não prova que bridge sempre
 perca origem. Escolher host network elimina a camada de tradução e permite E2E de
 origem em um único host sem alterar daemon global ou criar harness de roteamento
 privilegiado; é uma escolha de simplicidade de verificação, não necessidade universal.
-O trade-off de conectividade acima integra expressamente a decisão H2.
+O trade-off de conectividade deve ser considerado ao escolher o host.
 
 Perfil de produção suportado: Docker Engine rootful Linux com a configuração host
 acima. Docker Desktop/rootless não são declarados validados para esse perfil. O

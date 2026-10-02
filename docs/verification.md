@@ -26,8 +26,8 @@ do evento e sem segredos do produto. O status remoto só é válido para seu SHA
 Os resultados da fonte original exportada estão em
 [release-evidence/verification.json](release-evidence/verification.json).
 Eles não devem ser atribuídos automaticamente a uma revisão posterior ou ao CI
-remoto. O aceite técnico final e a nova revisão independente permanecem pendentes
-na preparação desta exportação; a aprovação visual não substitui esses gates.
+remoto. A revisão independente textual, seus achados e o registro humano de aceite
+são retidos privadamente; este documento não concede aceite nem certificação.
 
 O CI chama `python3 scripts/verify-check.py CHECK` (CHECK é backend, frontend,
 e2e, operations ou reproduce). Além do exit code, exige os marcadores completos,

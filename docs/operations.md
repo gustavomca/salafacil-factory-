@@ -81,7 +81,7 @@ por HTTP a reserva e o cookie originais após restart e restauração. Backups
 regulares/off-site e sua retenção são responsabilidade operacional da instalação;
 o MVP não agenda cópias nem envia dados a terceiros.
 
-## Perfil HTTPS/socket aprovado em H2
+## Perfil HTTPS/socket
 
 Este perfil é uma validação de segurança, em Linux com Docker rootful. Requer
 host dedicado sem serviços sensíveis sem autenticação em loopback/sockets

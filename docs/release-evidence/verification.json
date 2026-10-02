@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "Original candidate tests from which this separate repository was exported; not remote CI of the public commit",
+  "scope": "Snapshot of original candidate test executions on 2026-10-02, from which the separate public history was exported; not remote CI or a human acceptance record",
   "candidate_commit": "e1e552a9e858f80364c9891ad81513108914fa5e",
   "source_fingerprint": "ff71b13c90d1152f9b97c9f78d71de5de981d8f03ce7349665572b3574b83498",
   "factory_revision": "ab9dee88b6c0dec15abffd306ff95655f9f707f2",
@@ -55,9 +55,8 @@
     "flaky": 0
   },
   "visual": "Approved direction B; six current synthetic captures included without modification",
-  "independent_refresh": "pending; not executed",
-  "final_technical_H4": "pending",
-  "public_commit_CI": "not run; no GitHub repository created",
+  "independent_refresh": "Independent textual reviews with provider-confirmed claude-opus-5-5; raw inputs, outputs, receipts and findings retained privately; no test execution or pixel inspection by this reviewer",
+  "public_commit_CI": "Not represented by this original-source test record; consult GitHub Actions for the exact public commit",
   "deployment": "none",
   "dependency_audit": "Two npm lockfiles, nine Python runtime packages and Ruff checked 2026-10-02; no known vulnerabilities returned; OS/base images not audited"
 }

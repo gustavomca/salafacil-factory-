@@ -44,4 +44,5 @@ Não substitua a API/DB por mocks para comprovar fluxos de produto.
 Não versionar `.env`, cookies, dumps, chaves TLS, node_modules, dist ou volumes.
 Evidências locais derivadas ficam sob `.factory/`, ignoradas por este repositório.
 Um teste antigo não comprova uma árvore alterada. Execute os cinco scripts de
-[verification.md](verification.md); o CI usa os mesmos comandos e não precisa da Factory privada.
+[verification.md](verification.md); o CI chama os mesmos scripts por `scripts/verify-check.py`, que exige contagens
+exatas e zero skips; não precisa da Factory privada.

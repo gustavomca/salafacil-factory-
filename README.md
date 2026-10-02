@@ -2,9 +2,9 @@
 
 Agenda de salas para um pequeno escritório, com interface em português na direção
 **B — Agenda**. Django/DRF, React/TypeScript e PostgreSQL. A direção visual e a
-publicação em repositório separado foram aprovadas pelo proprietário; revisão
-independente atual e aceite técnico final continuam pendentes. Esta é uma cópia
-de preparação para publicação, sem deploy.
+publicação em repositório separado foram aprovadas pelo proprietário. Esta cópia
+mantém o runtime e os testes do candidato original; os registros de aceite e os
+recibos de revisão são retidos privadamente. Nenhum deploy é incluído.
 
 ## Executar localmente
 
